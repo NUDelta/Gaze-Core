@@ -7,6 +7,8 @@ module Api
         @user = User.new(user_params)
         if @user.save
           respond_with @user
+        else
+          respond_with nil
         end
       end
     
