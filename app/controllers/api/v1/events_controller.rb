@@ -8,7 +8,7 @@ module Api
         @user = User.where(:username => params[:username]).first
         @event = Event.new(event_params)
         @event.update_attributes(:user_id => @user.id)
-        if @task
+        if @task && !@user.events.where(:task_id => @task.id).empty?
           @event.update_attributes(:task_id => @task.id)
           @event.save
           respond_with @task

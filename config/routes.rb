@@ -16,6 +16,7 @@ GazeCore::Application.routes.draw do
     namespace :v1 do
       resources :users
       resources :events
+      resources :answers
     end
   end
 
