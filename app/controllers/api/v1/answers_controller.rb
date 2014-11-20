@@ -14,7 +14,7 @@ module Api
       def new
         @answer = Answer.new(answer_params)
         if @answer.save
-          @user = User.find(params[:user_id])
+          @user = User.find(answer_params[:user_id])
           @user.update_attribute(:score, @user.score + 100);
           respond_with @user
         else
