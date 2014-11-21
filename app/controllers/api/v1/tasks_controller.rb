@@ -10,15 +10,6 @@ module Api
         respond_with @tasks.reject { |t| !@user.answers.where(:task_id => t.id).empty? }
       end
 
-      def new
-        @task = Task.new(task_params)
-        if @task.save
-          respond_with @task
-        else
-          respond_with nil
-        end
-      end
-
       private
 
         def task_params
