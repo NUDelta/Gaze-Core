@@ -1,0 +1,39 @@
+<div class="row marketing">
+  <div class="container">
+    <div class="col-md-12 centerForm">
+      <%= form_for(@task) do |f| %>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="col-sm-4 control-label">
+              <%= f.label :lat %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.number_field :lat, step: 0.000001, :class => "form-control", :placeholder => "i.e. 42.3534363" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4 control-label">
+              <%= f.label :lng %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.number_field :lng, step: 0.000001, :class => "form-control", :placeholder => "i.e. -87.2342325" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4 control-label">
+              <%= f.label :question %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.text_field :question, :class => "form-control", :placeholder => "i.e. Is this trash can empty?" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+              <%= f.submit "Create Task", class: "btn btn-default" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
