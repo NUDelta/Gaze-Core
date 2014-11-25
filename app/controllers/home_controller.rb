@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
 
   def leaderboard
-    @users = User.all.order('score')
+    @users = User.all.order('score DESC')
   end
 
 end
