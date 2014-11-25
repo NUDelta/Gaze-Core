@@ -4,10 +4,15 @@ module Api
       respond_to :json
       
       def index
-        @tasks = Task.near([params[:lat], params[:lng]], 1)
         @user = User.where(:username => params[:username]).first
-      
-        respond_with @tasks.reject { |t| !@user.answers.where(:task_id => t.id).empty? }
+        if @user
+          @tasks = Task.near([params[:lat], params[:lng]], 1)
+  
+          respond_with @tasks.reject { |t| !@user.answers.where(:task_id => t.id).empty? }
+        else
+          error = [{:error => "invalid username"}]
+          respond_with error
+        end
       end
 
       private
