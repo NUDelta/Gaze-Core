@@ -10,4 +10,8 @@ class HomeController < ApplicationController
     end
   end
 
+  def leaderboard
+    @users = User.all.order('score')
+  end
+
 end

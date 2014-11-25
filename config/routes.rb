@@ -21,6 +21,8 @@ GazeCore::Application.routes.draw do
     end
   end
 
+  get "leaderboard" => "home#leaderboard"
+
   post "api/v1/tasks/new" => "tapshare#newpost"
 
   # Example resource route with options:
