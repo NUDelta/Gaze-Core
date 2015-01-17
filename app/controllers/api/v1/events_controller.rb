@@ -4,12 +4,18 @@ module Api
       respond_to :json
       
       def new
+        # find closest task given a users lat lon
         @task = Task.near([params[:event][:lat], params[:event][:lng]], 0.1).first
+        # get user given username in parameters
         @user = User.where(:username => params[:username]).first
+        # if there is a task close enough that the user hasn't answered already
         if @task && @user.answers.where(:task_id => @task.id).empty?
+          # create the event
           @event = Event.new(event_params)
           @event.update_attributes(:user_id => @user.id)
+          # if the distance is close enough to alert the user
           if @task.distance < 0.04
+            # link the task and event together
             @event.update_attributes(:task_id => @task.id)
             @event.save
             respond_with @task
