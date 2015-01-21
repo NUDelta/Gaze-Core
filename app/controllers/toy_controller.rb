@@ -1,8 +1,9 @@
 class ToyController < ApplicationController
   skip_before_filter :verify_authenticity_token  
+  respond_to :json
 
   def helloworld
-    puts "hello, world!"
+    respond_with "hello, world!"
   end
 
 end
