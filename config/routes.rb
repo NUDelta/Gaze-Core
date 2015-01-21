@@ -25,6 +25,8 @@ GazeCore::Application.routes.draw do
 
   post "api/v1/tasks/new" => "tapshare#newpost"
 
+  get "toy" => "toy#helloworld"
+
   # Example resource route with options:
   #   resources :products do
   #     member do
