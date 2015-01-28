@@ -3,6 +3,7 @@ class TapshareController < ApplicationController
   respond_to :json
 
   def newpost
+
     @task = Task.new
     @task.lat = params[:lat]
     @task.lng = params[:lng]
