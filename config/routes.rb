@@ -1,10 +1,13 @@
 GazeCore::Application.routes.draw do
+  resources :toys
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
   resources :tasks
+  resources :food_reports, defaults: { format: :json }
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -24,6 +27,7 @@ GazeCore::Application.routes.draw do
   get "leaderboard" => "home#leaderboard"
 
   post "api/v1/tasks/new" => "tapshare#newpost"
+  post "api/v1/food_reports/new" => "tapshare#new_food_report"
 
   # Example resource route with options:
   #   resources :products do
