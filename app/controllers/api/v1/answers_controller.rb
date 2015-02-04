@@ -12,11 +12,11 @@ module Api
       end
       
       def new
-        @answer = Answer.new(answer_params)
+        @answer = Answer.new
+        @answer.task_id = params[:task_id]
+        @answer.value = params[:value]
         if @answer.save
-          @user = User.find(answer_params[:user_id])
-          @user.update_attribute(:score, @user.score + 100);
-          respond_with @user
+          respond_with @answer
         else
           respond_with nil
         end
@@ -25,7 +25,7 @@ module Api
       private
 
         def answer_params
-          params.require(:answer).permit(:user_id, :task_id, :event_id, :value)
+          params.require(:answer).permit(:task_id, :value)
         end
     end
   end

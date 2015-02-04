@@ -4,15 +4,18 @@ module Api
       respond_to :json
       
       def index
-        @user = User.where(:username => params[:username]).first
-        if @user
-          @tasks = Task.near([params[:lat], params[:lng]], 1)
-  
-          respond_with @tasks.reject { |t| !@user.answers.where(:task_id => t.id).empty? }
-        else
-          error = [{:error => "invalid username"}]
-          respond_with error
-        end
+        @tasks = Task.near([params[:lat], params[:lng]], 1)
+        respond_with @tasks
+      end
+
+      def show
+        @tasks = Task.all
+        render json: @tasks
+      end
+
+      def verified
+        @tasks = Tasks.all
+        respond_with @tasks
       end
 
       private

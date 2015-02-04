@@ -26,6 +26,11 @@ class TapshareController < ApplicationController
     end
   end
 
+  def verified
+    @task = Task.find{|x| x.answers.count > 0}
+    render json: @task
+  end
+
   private
 
     def task_params

@@ -1,4 +1,6 @@
 GazeCore::Application.routes.draw do
+  resources :toys
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -11,6 +13,8 @@ GazeCore::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  get "api/v1/tasks/verified" => "tapshare#verified"
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   namespace :api, defaults: {format: 'json'} do
@@ -27,7 +31,7 @@ GazeCore::Application.routes.draw do
   post "api/v1/tasks/new" => "tapshare#newpost"
   post "api/v1/food_reports/new" => "tapshare#new_food_report"
 
-  get "toy" => "toy#helloworld"
+  #get "api/v1/tasks/verified" => "tapshare#verified_tasks"
 
   # Example resource route with options:
   #   resources :products do
