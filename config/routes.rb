@@ -15,6 +15,8 @@ GazeCore::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   get "api/v1/tasks/verified" => "tapshare#verified"
+  get "api/v1/tasks/new" => "tapshare#newpost"
+  get "api/v1/users/update" => "api/v1/users#update"
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   namespace :api, defaults: {format: 'json'} do
@@ -28,7 +30,6 @@ GazeCore::Application.routes.draw do
 
   get "leaderboard" => "home#leaderboard"
 
-  post "api/v1/tasks/new" => "tapshare#newpost"
   post "api/v1/food_reports/new" => "tapshare#new_food_report"
 
   #get "api/v1/tasks/verified" => "tapshare#verified_tasks"

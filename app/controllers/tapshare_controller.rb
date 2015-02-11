@@ -7,7 +7,8 @@ class TapshareController < ApplicationController
     @task = Task.new
     @task.lat = params[:lat]
     @task.lng = params[:lng]
-    @task.question = params[:question]
+    @user = User.find(params[:user_id])
+    @task.update_attributes(:user_id => @user.id)
     if @task.save
       render json: @task
     else

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208214039) do
+ActiveRecord::Schema.define(version: 20150211043234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150208214039) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "answers", ["task_id"], name: "index_answers_on_task_id", using: :btree
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150208214039) do
     t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "toys", force: true do |t|
@@ -63,8 +65,11 @@ ActiveRecord::Schema.define(version: 20150208214039) do
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score",      default: 0
+    t.integer  "score",              default: 0
     t.string   "email"
+    t.boolean  "food_notifications", default: true
+    t.boolean  "verify_reports",     default: true
+    t.boolean  "daily_reminders",    default: true
   end
 
   add_index "users", ["score"], name: "index_users_on_score", using: :btree
