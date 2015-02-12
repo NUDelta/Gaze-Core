@@ -25,8 +25,8 @@ module Api
             respond_with nil
           end
         else
-          error = {:error => "no tasks nearby"}
-          respond_with error
+          #error = {:error => "no tasks nearby"}
+          respond_with nil
         end
       end
 
