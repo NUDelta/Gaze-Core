@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128214602) do
+ActiveRecord::Schema.define(version: 20150214192421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
     t.integer  "task_id"
-    t.string   "value"
+    t.string   "response"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "question_id"
   end
 
   add_index "answers", ["task_id"], name: "index_answers_on_task_id", using: :btree
@@ -41,6 +42,14 @@ ActiveRecord::Schema.define(version: 20150128214602) do
   create_table "food_reports", force: true do |t|
     t.decimal  "lat",        precision: 10, scale: 6
     t.decimal  "lon",        precision: 10, scale: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", force: true do |t|
+    t.string   "question_text"
+    t.string   "question_options", default: [], array: true
+    t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
