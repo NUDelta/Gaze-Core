@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150214193649) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_id"
+    t.integer  "user_id"
   end
 
   add_index "answers", ["task_id"], name: "index_answers_on_task_id", using: :btree
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150214193649) do
     t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "toys", force: true do |t|

@@ -15,7 +15,16 @@ module Api
 
       def verified
         @tasks = Tasks.all
-        respond_with @tasks
+        @verified_tasks = Array.new
+        @tasks.each do |t|
+          @questions = t.questions
+          @questions.each do |q|
+            if !q.answers.empty?
+              @verified_tasks.push t
+            end
+          end
+        end
+        respond_with @verified_tasks
       end
 
       private

@@ -18,12 +18,9 @@ module Api
               respond_with nil
             end
           end
-<<<<<<< HEAD
         else
           #error = {:error => "no tasks nearby"}
           respond_with nil
-=======
->>>>>>> 3fdbfbf9a10ede378241e6ace996d99351d05cd8
         end
         # if there is a task close enough that the user hasn't answered already
         # if @task && @user.answers.where(:task_id => @task.id).empty?
@@ -45,6 +42,18 @@ module Api
         #   error = {:error => "no tasks nearby"}
         #   respond_with error
         # end
+      end
+
+      def answer
+        @answer = Answer.new()
+        @answer.user_id = params[:user_id]
+        @answer.question_id = params[:question_id]
+        if @answer.save
+          render json: @answer
+        else
+          respond_with nil
+        end
+        respond_with nil
       end
 
       # def new
