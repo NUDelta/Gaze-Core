@@ -7,8 +7,8 @@ development:
   host: localhost
   adapter: postgresql
   database: gaze_dev
-  username: stephen
-  password: 'josie'
+  # username: stephen
+  # password: 'josie'
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -17,12 +17,12 @@ test:
   host: localhost
   adapter: postgresql
   database: gaze_test
-  username: stephen
-  password: 'josie'
+  # username: stephen
+  # password: 'josie'
 
 production:
   host: localhost
   adapter: postgresql
   database: gaze_prod
-  username: stephen
-  password: 'josie'
+  # username: stephen
+  # password: 'josie'

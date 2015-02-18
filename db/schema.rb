@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211043234) do
+ActiveRecord::Schema.define(version: 20150214193649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
     t.integer  "task_id"
-    t.string   "value"
+    t.string   "response"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "question_id"
   end
 
   add_index "answers", ["task_id"], name: "index_answers_on_task_id", using: :btree
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20150211043234) do
     t.datetime "updated_at"
   end
 
+  create_table "questions", force: true do |t|
+    t.string   "question_text"
+    t.string   "question_options", default: [], array: true
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sequence_num"
+  end
+
   create_table "tasks", force: true do |t|
     t.decimal  "lat",        precision: 10, scale: 6
     t.decimal  "lng",        precision: 10, scale: 6
@@ -53,7 +62,6 @@ ActiveRecord::Schema.define(version: 20150211043234) do
     t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "toys", force: true do |t|
