@@ -8,23 +8,25 @@ module Api
         respond_with @tasks
       end
 
-      def show
-        @tasks = Task.all
-        render json: @tasks
-      end
+      # def show
+      #   @tasks = Task.all
+      #   render json: @tasks
+      # end
 
       def verified
-        @tasks = Tasks.all
+        @tasks = Task.all
         @verified_tasks = Array.new
         @tasks.each do |t|
           @questions = t.questions
-          @questions.each do |q|
-            if !q.answers.empty?
-              @verified_tasks.push t
-            end
-          end
+          # @questions.each do |q|
+          #   if !(q.answers.empty?)
+          #     @verified_tasks.push Task.find(q.task_id)
+          #   end
+          # end
         end
-        respond_with @verified_tasks
+        respond_to do |format|
+          format.json { render :json => @verified_tasks }
+        end
       end
 
       private
