@@ -14,10 +14,10 @@ module Api
           @questions.each do |t|
             if t.answers.empty?
               respond_with t
-            else
-              respond_with nil
+              return
             end
           end
+          respond_with nil
         else
           #error = {:error => "no tasks nearby"}
           respond_with nil
