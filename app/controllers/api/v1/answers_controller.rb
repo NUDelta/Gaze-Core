@@ -12,9 +12,9 @@ module Api
       end
       
       def new
-        @answer = Answer.new
-        @answer.task_id = params[:task_id]
-        @answer.value = params[:value]
+        @answer = Answer.new(answer_params)
+        # @answer.question_id = params[:question_id]
+        # @answer.task_id = params[:value]
         if @answer.save
           respond_with @answer
         else
@@ -25,7 +25,7 @@ module Api
       private
 
         def answer_params
-          params.require(:answer).permit(:task_id, :value)
+          params.require(:answer).permit(:question_id, :user_id, :value)
         end
     end
   end
