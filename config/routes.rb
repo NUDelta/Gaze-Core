@@ -14,9 +14,9 @@ GazeCore::Application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  get "api/v1/tasks/verified" => "tapshare#verified"
-  get "api/v1/tasks/new" => "tapshare#newpost"
+  get "api/v1/tasks/new" => "api/v1/tasks#new"
   get "api/v1/users/update" => "api/v1/users#update"
+  get "api/v1/tasks/verified" => "api/v1/tasks#verified"
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   namespace :api, defaults: {format: 'json'} do
@@ -30,7 +30,6 @@ GazeCore::Application.routes.draw do
 
   get "leaderboard" => "home#leaderboard"
   get "api/v1/events/answer" => "events#answer"
-  post "api/v1/tasks/new" => "tapshare#newpost"
   post "api/v1/food_reports/new" => "tapshare#new_food_report"
 
   #get "api/v1/tasks/verified" => "tapshare#verified_tasks"
