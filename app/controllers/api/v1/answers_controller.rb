@@ -16,7 +16,7 @@ module Api
         # @answer.question_id = params[:question_id]
         # @answer.task_id = params[:value]
         if @answer.save
-          respond_with @answer
+          render json: @answer
         else
           respond_with nil
         end
@@ -25,7 +25,7 @@ module Api
       private
 
         def answer_params
-          params.require(:answer).permit(:question_id, :user_id, :value)
+          params.require(:answer).permit(:question_id, :user_id, :response)
         end
     end
   end
