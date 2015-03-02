@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # this architecture of one user to one device is not likely the best,
+  # but will have to do for now
+  belongs_to :device
   has_many :events, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :tasks, dependent: :destroy

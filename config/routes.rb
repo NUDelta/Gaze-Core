@@ -32,6 +32,8 @@ GazeCore::Application.routes.draw do
   get "api/v1/events/answer" => "events#answer"
   post "api/v1/food_reports/new" => "tapshare#new_food_report"
 
+  post "device/new" => "device#create"
+
   #get "api/v1/tasks/verified" => "tapshare#verified_tasks"
 
   # Example resource route with options:

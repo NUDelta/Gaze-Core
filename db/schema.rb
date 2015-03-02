@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214193649) do
+ActiveRecord::Schema.define(version: 20150302164106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,17 @@ ActiveRecord::Schema.define(version: 20150214193649) do
     t.string   "response"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "question_id"
     t.integer  "user_id"
+    t.integer  "question_id"
   end
 
   add_index "answers", ["task_id"], name: "index_answers_on_task_id", using: :btree
+
+  create_table "devices", force: true do |t|
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.integer  "user_id"
@@ -57,13 +63,20 @@ ActiveRecord::Schema.define(version: 20150214193649) do
   end
 
   create_table "tasks", force: true do |t|
-    t.decimal  "lat",        precision: 10, scale: 6
-    t.decimal  "lng",        precision: 10, scale: 6
+    t.decimal  "lat",             precision: 10, scale: 6
+    t.decimal  "lng",             precision: 10, scale: 6
     t.string   "question"
     t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "confirmed"
+    t.string   "building"
+    t.string   "floor_number"
+    t.string   "food_drink"
+    t.string   "food_type"
+    t.string   "drink_type"
+    t.string   "free_for_anyone"
   end
 
   create_table "toys", force: true do |t|
@@ -80,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150214193649) do
     t.boolean  "food_notifications", default: true
     t.boolean  "verify_reports",     default: true
     t.boolean  "daily_reminders",    default: true
+    t.integer  "device_id"
   end
 
   add_index "users", ["score"], name: "index_users_on_score", using: :btree
