@@ -4,8 +4,8 @@ module Api
       respond_to :json
       
       def new
-        # find closest task given a users lat lon
-        @task = Task.near([params[:event][:lat], params[:event][:lng]], 10).first
+        # find closest confirmed or unconfirmed task given a users lat lon
+        @task = Task.near([params[:event][:lat], params[:event][:lng]], 10).where(:confirmed => [true, nil]).first
         # get user given username in parameters
         @user = User.where(:username => params[:username]).first
         if @task

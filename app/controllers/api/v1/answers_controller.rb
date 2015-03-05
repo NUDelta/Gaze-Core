@@ -13,8 +13,6 @@ module Api
       
       def new
         @answer = Answer.new(answer_params)
-        # @answer.question_id = params[:question_id]
-        # @answer.task_id = params[:value]
         if @answer.save
           render json: @answer
         else
