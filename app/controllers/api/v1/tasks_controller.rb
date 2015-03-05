@@ -4,7 +4,7 @@ module Api
       respond_to :json
       
       def index
-        @tasks = Task.near([params[:lat], params[:lng]], 1)
+        @tasks = Task.near([params[:lat], params[:lng]], 10)
         respond_with @tasks
       end
 
