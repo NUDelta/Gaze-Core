@@ -5,7 +5,7 @@ module Api
       
       def new
         # find closest task given a users lat lon
-        @task = Task.near([params[:event][:lat], params[:event][:lng]], 0.1).first
+        @task = Task.near([params[:event][:lat], params[:event][:lng]], 10).first
         # get user given username in parameters
         @user = User.where(:username => params[:username]).first
         if @task
