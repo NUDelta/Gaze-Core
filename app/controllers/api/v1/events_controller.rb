@@ -9,7 +9,7 @@ module Api
         # get user given username in parameters
         @user = User.where(:username => params[:username]).first
         if @task
-          @question = @task.questions.where({:sequence_num => @task.sequence_num})
+          @question = @task.questions.where(:sequence_num => @task.sequence_num).first
           #@questions = @task.questions
           #@questions.order('sequence_num')
           #@questions.each do |t|
