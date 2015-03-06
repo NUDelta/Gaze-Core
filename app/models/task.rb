@@ -10,12 +10,5 @@ class Task < ActiveRecord::Base
   	@question1.sequence_num = 1
   	@question1.question_options = ["yes", "no"]
   	@question1.save
-
-  	@question2 = Question.new
-  	@question2.task_id = self.id
-  	@question2.question_text = "Someone confirmed there was free food near you. Is it in Tech or Ford?"
-  	@question2.sequence_num = 2
-  	@question2.question_options = ["Tech", "Ford"]
-  	@question2.save
   end
 end

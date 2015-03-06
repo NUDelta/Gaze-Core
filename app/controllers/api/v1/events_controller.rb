@@ -4,20 +4,21 @@ module Api
       respond_to :json
       
       def new
-        # find closest confirmed or unconfirmed task given a users lat lon
-        @task = Task.near([params[:event][:lat], params[:event][:lng]], 10).where(:confirmed => [true, nil]).first
+        # find closest confirmed or unconfirmed task given a users lat lon, with the largest sequence num
+        @task = Task.near([params[:event][:lat], params[:event][:lng]], 10).where(:confirmed => ["true", nil]).order(:sequence_num).last
         # get user given username in parameters
         @user = User.where(:username => params[:username]).first
         if @task
-          @questions = @task.questions
-          @questions.order('sequence_num')
-          @questions.each do |t|
-            if t.answers.empty?
-              respond_with t
-              return
-            end
-          end
-          respond_with nil
+          @question = @task.questions.where({:sequence_num => @task.sequence_num})
+          #@questions = @task.questions
+          #@questions.order('sequence_num')
+          #@questions.each do |t|
+            #if t.answers.empty?
+              #respond_with t
+              #return
+            #end
+          #end
+          respond_with @question
         else
           #error = {:error => "no tasks nearby"}
           respond_with nil

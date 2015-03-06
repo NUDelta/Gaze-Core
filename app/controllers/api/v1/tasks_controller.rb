@@ -10,6 +10,7 @@ module Api
 
       def new
         @task = Task.new(task_params)
+        @task.sequence_num = 1
         if @task.save
           render json: @task
         else

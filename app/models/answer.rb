@@ -7,9 +7,11 @@ class Answer < ActiveRecord::Base
     @task = Task.find(@question_asked.task_id)
     if @question_asked.sequence_num == 1
       @task.confirmed = self.response
+      @task.sequence_num = 2
     end
     if @question_asked.sequence_num == 2
       @task.building = self.response
+      @task.sequence_num = 3
       # branch based on "Tech" or "Ford"
       @floor_question = Question.new
       @floor_question.task_id = @question_asked.task_id
@@ -20,6 +22,7 @@ class Answer < ActiveRecord::Base
     end
     if @question_asked.sequence_num == 3
       @task.floor_number = self.response
+      @task.sequence_num = 4
       @food_drink = Question.new
       @food_drink.task_id = @question_asked.task_id
       @food_drink.question_text = "Someone reported free food on the %s floor of %s. Is it food or drink?" % [@task.floor_number, @task.building]
@@ -29,6 +32,7 @@ class Answer < ActiveRecord::Base
     end
     if @question_asked.sequence_num == 4
       @task.food_drink = self.response
+      @task.sequence_num = 5
       if self.response == "food"
         @food_type = Question.new
         @food_type.task_id = @question_asked.task_id
@@ -44,6 +48,7 @@ class Answer < ActiveRecord::Base
       end
     end
     if @question_asked.sequence_num == 5
+      @task.sequence_num = 6
       @free_for_everyone = Question.new
       @free_for_everyone.task_id = @question_asked.task_id
       if @task.food_drink = "food"
