@@ -8,6 +8,11 @@ class Answer < ActiveRecord::Base
     if @question_asked.sequence_num == 1
       @task.confirmed = self.response
       @task.sequence_num = 2
+      @building_question = Question.new
+      @building_question.task_id = @question_asked.task_id
+      @building_question.question_text = "Someone confirmed free food near you! Is it in Tech or Ford?"
+      @building_question.question_options = ["Tech", "Ford"]
+      @building_question.save
     end
     if @question_asked.sequence_num == 2
       @task.building = self.response
