@@ -31,7 +31,7 @@ class Answer < ActiveRecord::Base
       @task.sequence_num = 4
       @food_drink = Question.new
       @food_drink.task_id = @question_asked.task_id
-      @food_drink.question_text = "Someone reported free food on the %s floor of %s. Is it food or drink?" % [@task.floor_number, @task.building]
+      @food_drink.question_text = "Someone reported free food on floor %s of %s. Is it food or drink?" % [@task.floor_number, @task.building]
       @food_drink.sequence_num = 4
       @food_drink.question_options = ["food", "drink"]
       @food_drink.save
@@ -42,13 +42,13 @@ class Answer < ActiveRecord::Base
       if self.response == "food"
         @food_type = Question.new
         @food_type.task_id = @question_asked.task_id
-        @food_type.question_text = "There's free food on the %s floor of %s. What kind is it?" % [@task.floor_number, @task.building] 
+        @food_type.question_text = "There's free food on floor %s of %s. What kind is it?" % [@task.floor_number, @task.building] 
         @food_type.question_options = ["pizza", "donuts"]
         @food_type.save
       else
         @drink_type = Question.new
         @drink_type.task_id = @question_asked.task_id
-        @drink_type.question_text = "There's free drinks on the %s floor of %s. What kind is it?" % [@task.floor_number, @task.building] 
+        @drink_type.question_text = "There's free drinks on floor %s of %s. What kind is it?" % [@task.floor_number, @task.building] 
         @drink_type.question_options = ["coffee", "soda"]
         @drink_type.save
       end
@@ -59,7 +59,7 @@ class Answer < ActiveRecord::Base
       @free_for_everyone.task_id = @question_asked.task_id
       if @task.food_drink = "food"
         @task.food_type = self.response
-        @free_for_everyone.question_text = "There's free %s on the %s floor of %s. Is it free for everyone?" % [@task.food_type, @task.floor_number, @task.building]
+        @free_for_everyone.question_text = "There's free %s on floor %s of %s. Is it free for everyone?" % [@task.food_type, @task.floor_number, @task.building]
       else
         @task.drink_type = self.response
         @free_for_everyone.question_text = "There's free %s on the %s floor of %s. Is it free for everyone?" % [@task.drink_type, @task.floor_number, @task.building]
