@@ -33,7 +33,7 @@ class Answer < ActiveRecord::Base
         @food_type.task_id = @question_asked.task_id
         @food_type.question_text = "There's free food on floor %s of Ford. What kind is it?" % [@task.floor_number] 
         # TO BE CHANGED AFTER WEDNESDAY
-        @food_type.question_options = ["WEDNESDAY_FOOD"]
+        @food_type.question_options = ["WEDNESDAY"]
         @food_type.sequence_num = 4
         @food_type.save
       else
