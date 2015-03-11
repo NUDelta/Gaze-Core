@@ -57,6 +57,7 @@ class Answer < ActiveRecord::Base
         @task.drink_type = self.response
         @free_for_everyone.question_text = "There's free %s on the %s floor of Ford. Are there any restrictions on who can eat it?" % [@task.drink_type, @task.floor_number]
       end
+      @free_for_everyone.sequence_num = 5
       @free_for_everyone.question_options = ["yes", "no"]
       @free_for_everyone.save
     end
