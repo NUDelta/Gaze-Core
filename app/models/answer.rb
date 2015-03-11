@@ -63,7 +63,7 @@ class Answer < ActiveRecord::Base
     end
     if @question_asked.sequence_num == 5
       @task.sequence_num = 6
-      @task.free_for_everyone = self.response
+      @task.free_for_anyone = self.response
     end
     @task.save
   end
