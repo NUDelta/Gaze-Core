@@ -41,11 +41,9 @@ module Api
         @tasks = Task.all
         @verified_tasks = Array.new
         @tasks.each do |t|
-          @questions = t.questions
-          @questions.each do |q|
-            if !(q.answers.empty?)
-              @verified_tasks.push Task.find(q.task_id)
-            end
+          # we need ALL of these fields to be filled up to call it verified
+          if t.lat && t.lng && t.sequence_num == 6
+            @verified_tasks.push t
           end
         end
         render json: @verified_tasks

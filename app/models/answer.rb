@@ -60,6 +60,10 @@ class Answer < ActiveRecord::Base
       @free_for_everyone.question_options = ["yes", "no"]
       @free_for_everyone.save
     end
+    if @question_asked.sequence_num == 5
+      @task.sequence_num = 6
+      @task.free_for_everyone = self.response
+    end
     @task.save
   end
 end
