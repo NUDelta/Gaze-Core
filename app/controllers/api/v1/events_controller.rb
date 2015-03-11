@@ -9,12 +9,12 @@ module Api
         # get user given username in parameters
         @user = User.where(:username => params[:username]).first
         if @task
-          #if @task.user_id != @user.id
-          @question = @task.questions.where(:sequence_num => @task.sequence_num).first
-          respond_with @question
-          #else
-            #respond_with nil
-          #end
+          if @task.user_id != @user.id
+            @question = @task.questions.where(:sequence_num => @task.sequence_num).first
+            respond_with @question
+          else
+            respond_with nil
+          end
         else
           #error = {:error => "no tasks nearby"}
           respond_with nil
