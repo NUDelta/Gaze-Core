@@ -3,6 +3,10 @@ class Task < ActiveRecord::Base
   belongs_to :user
   has_many :events, dependent: :destroy
   has_many :questions, dependent: :destroy
+  after_create do
+    self.sequence_num = 1
+  end
+
   after_save do
   	@question1 = Question.new
   	@question1.task_id = self.id

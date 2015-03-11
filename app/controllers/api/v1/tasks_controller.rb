@@ -10,7 +10,6 @@ module Api
 
       def new
         @task = Task.new(task_params)
-        @task.sequence_num = 1
         if @task.save
           render json: @task
         else
@@ -20,11 +19,15 @@ module Api
 
       def cancel
         @task = Task.find(params[:task_id])
-        if @task.user_id == params[:user_id]
+        puts @task
+        puts @task.user_id
+        puts @task.id
+        puts params[:user_id]
+        if @task.user_id.to_s == params[:user_id]
           @task.destroy
           render json: @task
         else
-          respond_with nil
+          render json: nil
         end
       end
 
@@ -50,7 +53,7 @@ module Api
       private
 
         def task_params
-          params.require(:task).permit(:lat, :lng, :question, :user_id)
+          params.require(:task).require(:lat, :lng, :user_id)
         end
     end
   end
