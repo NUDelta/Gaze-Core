@@ -18,6 +18,16 @@ module Api
         end
       end
 
+      def cancel
+        @task = Task.find(params[:task_id])
+        if @task.user_id == params[:user_id]
+          @task.destroy
+          render json: @task
+        else
+          respond_with nil
+        end
+      end
+
       # def show
       #   @tasks = Task.all
       #   render json: @tasks

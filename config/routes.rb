@@ -17,6 +17,7 @@ GazeCore::Application.routes.draw do
   get "api/v1/tasks/new" => "api/v1/tasks#new"
   get "api/v1/users/update" => "api/v1/users#update"
   get "api/v1/tasks/verified" => "api/v1/tasks#verified"
+  get "api/v1/tasks/cancel" => "api/v1/tasks#cancel"
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   namespace :api, defaults: {format: 'json'} do
