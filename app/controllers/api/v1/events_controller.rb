@@ -10,8 +10,8 @@ module Api
         @user = User.where(:username => params[:username]).first
         if @task
           #if @task.user_id != @user.id
-            @question = @task.questions.where(:sequence_num => @task.sequence_num).first
-            respond_with @question
+          @question = @task.questions.where(:sequence_num => @task.sequence_num).first
+          respond_with @question
           #else
             #respond_with nil
           #end
