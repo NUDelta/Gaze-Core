@@ -53,7 +53,7 @@ module Api
       private
 
         def task_params
-          params.require(:task).require(:lat, :lng, :user_id)
+          params.require(:task).permit(:lat, :lng, :user_id)
         end
     end
   end
