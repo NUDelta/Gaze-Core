@@ -63,7 +63,12 @@ class Answer < ActiveRecord::Base
     end
     if @question_asked.sequence_num == 5
       @task.sequence_num = 6
-      @task.free_for_anyone = self.response
+      # TODO: fix the reversal of logic in our property vs. question. It's confusing right now.
+      if self.response == "true"
+        @task.free_for_anyone = "no"
+      else
+        @task.free_for_everyone = "yes"
+      end
     end
     @task.save
   end
