@@ -32,16 +32,16 @@ class Answer < ActiveRecord::Base
         @food_type = Question.new
         @food_type.task_id = @question_asked.task_id
         @food_type.question_text = "There's free food on floor %s of Ford. What kind is it?" % [@task.floor_number] 
-        # TO BE CHANGED AFTER WEDNESDAY
-        @food_type.question_options = ["WEDNESDAY"]
+        # TO BE CHANGED AFTER THURSDAY
+        @food_type.question_options = ["THURSDAY_FOOD"]
         @food_type.sequence_num = 4
         @food_type.save
       else
         @drink_type = Question.new
         @drink_type.task_id = @question_asked.task_id
         @drink_type.question_text = "There's free drinks on floor %s of Ford. What kind is it?" % [@task.floor_number] 
-        # TO BE CHANGED AFTER WEDNESDAY
-        @drink_type.question_options = ["NONE FOR NOW"]
+        # TO BE CHANGED AFTER THURSDAY
+        @drink_type.question_options = ["THURSDAY_DRINK"]
         @drink_type.sequence_num = 4
         @drink_type.save
       end
