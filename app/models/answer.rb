@@ -41,7 +41,7 @@ class Answer < ActiveRecord::Base
         @drink_type.task_id = @question_asked.task_id
         @drink_type.question_text = "There's free drinks on floor %s of Ford. What kind is it?" % [@task.floor_number] 
         # TO BE CHANGED AFTER WEDNESDAY
-        @drink_type.question_options = ["THURSDAY_FOOD"]
+        @drink_type.question_options = ["NONE FOR NOW"]
         @drink_type.sequence_num = 4
         @drink_type.save
       end
