@@ -5,13 +5,17 @@ module Api
       
       def new
         # find closest confirmed or unconfirmed task given a users lat lon, with the largest sequence num
-        @task = Task.near([params[:event][:lat], params[:event][:lng]], 10).where(:confirmed => ["true", nil]).where("sequence_num < ?", 6).order(:sequence_num).last
+        @task = Task.near([params[:event][:lat], params[:event][:lng]], 0.1).where(:confirmed => ["true", nil]).where("sequence_num < ?", 6).order(:sequence_num).last
         # get user given username in parameters
         @user = User.where(:username => params[:username]).first
         if @task
           if @task.user_id != @user.id
-            @question = @task.questions.where(:sequence_num => @task.sequence_num).first
-            respond_with @question
+            if @user.verify_reports
+              @question = @task.questions.where(:sequence_num => @task.sequence_num).first
+              respond_with @question
+            else
+              respond_with nil
+            end
           else
             respond_with nil
           end
