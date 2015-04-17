@@ -10,7 +10,7 @@ module Api
         @user = User.where(:username => params[:username]).first
         if @task
           if @task.user_id != @user.id
-            if @user.verify_reports
+            if @user.verify_reports && @user.answers.where(:task_id => @task.id).count < 3
               @question = @task.questions.where(:sequence_num => @task.sequence_num).first
               respond_with @question
             else
